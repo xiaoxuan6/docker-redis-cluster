@@ -78,7 +78,7 @@ $ docker exec -it node-1 sh
 
 ```bash
 $ docker exec -it node-1 sh
-# redis-cli -c
+redis-cli -c
 127.0.0.1:6379> set name eto
 -> Redirected to slot [5798] located at 127.0.0.1:6380
 OK
@@ -90,7 +90,7 @@ OK
 
 ```bash
 $ docker exec -it node-2 sh
-# redis-cli -c -p 6380
+redis-cli -c -p 6380
 127.0.0.1:6380> get name
 "eto"
 127.0.0.1:6380>
@@ -103,6 +103,7 @@ $ docker exec -it node-2 sh
 > host 网络模式可以让容器共享宿主机网络栈，容器将不会虚拟出自己的网卡，配置自己的 IP 等，而是使用宿主机的 IP 和端口。
 
 2、使用了数据卷 `./node6/redis.conf:/usr/local/etc/redis/redis.conf`, 必须覆盖容器启动后默认执行的命令。
+
 3、集群至少使用 6 各节点
 
 [redis集群为什么最少需要6个节点？](https://www.php.cn/redis/434214.html)
