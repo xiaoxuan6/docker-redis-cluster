@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  node-7:
+    container_name: node-7
+    image: redis
+    restart: on-failure
+    ports:
+      - 6385:6385
+    volumes:
+      - ./node7/data:/data
+      - ./node7/redis.conf:/usr/local/etc/redis/redis.conf
+    network_mode: host
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+  node-8:
+    container_name: node-8
+    image: redis
+    restart: on-failure
+    ports:
+      - 6386:6386
+    volumes:
+      - ./node8/data:/data
+      - ./node8/redis.conf:/usr/local/etc/redis/redis.conf
+    network_mode: host
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

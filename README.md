@@ -96,6 +96,26 @@ redis-cli -c -p 6380
 127.0.0.1:6380>
 ```
 
+# 4、更多操作
+
+## check cluster
+
+```bash
+redis-cli --cluster check ip:port
+```
+
+## 容错机制
+
+nodes master `6381` 宕机 nodes slave `6383` 顶替 nodes master `6381` 变成 nodes master `6383`, 
+当 nodes fail `6381` 重启之后变成 nodes slave `6381`， nodes master `6383` 不变还是 master  
+
+> 如果想把 nodes slave `6381` 变成 master，需要 stop nodes master `6383`， 然后重启 nodes fail `6383`
+> 注意：这里 master 和 slave 切换会耗时几秒，不能停止立刻重启
+
+## 扩容
+
+[Add-Node](./ADD-NODE.md)
+
 # 注意事项
 
 1、按照 `Redis` 官网：[https://redis.io/topics/cluster-tutorial](https://redis.io/topics/cluster-tutorial) 的提示，为了使 `Docker` 与 `Redis Cluster` 兼容，您需要使用 `Docker` 的 `host` 网络模式。
