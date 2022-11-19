@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  cluster-php:
+    container_name: cluster-php
+    image: xiaoxuan6/php:7.4-fpm-alpine
+    restart: on-failure
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./example:/var/www/html
+    networks:
+      - cluster
+
+  #  redis1:
+  #    extends: # 注意`extends`命令已被弃用,并在Compose v3.x中完全[删除]
+  #      file: docker-compose.yml
+  #      service: node1
+  #    ports:
+  #      - 6379:6379
+  #    networks:
+  #      - cluster
+
+  cluster-nginx:
+    image: nginx
+    container_name: cluster-nginx
+    restart: on-failure
+    ports:
+      - "8080:80"
+    volumes:
+      - ./example:/var/www/html
+      - ./example/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - cluster-php
+      - node1
+      - node2
+      - node3
+      - node4
+      - node5
+      - node6
+    networks:
+      - cluster
+
+networks:
+  cluster:

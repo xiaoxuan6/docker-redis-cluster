@@ -6,6 +6,8 @@ services:
     container_name: node-1
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6379:6379
     volumes:
       - ./node1/data:/data
       - ./node1/redis.conf:/usr/local/etc/redis/redis.conf
@@ -16,6 +18,8 @@ services:
     container_name: node-2
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6380:6380
     volumes:
       - ./node2/data:/data
       - ./node2/redis.conf:/usr/local/etc/redis/redis.conf
@@ -26,6 +30,8 @@ services:
     container_name: node-3
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6381:6381
     volumes:
       - ./node3/data:/data
       - ./node3/redis.conf:/usr/local/etc/redis/redis.conf
@@ -36,6 +42,8 @@ services:
     container_name: node-4
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6382:6382
     volumes:
       - ./node4/data:/data
       - ./node4/redis.conf:/usr/local/etc/redis/redis.conf
@@ -46,6 +54,8 @@ services:
     container_name: node-5
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6383:6383
     volumes:
       - ./node5/data:/data
       - ./node5/redis.conf:/usr/local/etc/redis/redis.conf
@@ -56,6 +66,8 @@ services:
     container_name: node-6
     network_mode: "host"
     restart: on-failure
+    ports:
+      - 6384:6384
     volumes:
       - ./node6/data:/data
       - ./node6/redis.conf:/usr/local/etc/redis/redis.conf
