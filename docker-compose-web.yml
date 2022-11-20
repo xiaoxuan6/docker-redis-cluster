@@ -32,12 +32,12 @@ services:
       - ./example/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - cluster-php
-      - node1
-      - node2
-      - node3
-      - node4
-      - node5
-      - node6
+      - node-1
+      - node-2
+      - node-3
+      - node-4
+      - node-5
+      - node-6
     networks:
       - cluster
 
