@@ -7,7 +7,7 @@
 ## 1、检查集群情况并获取 `node-8` 节点的ID
 
 ```bash
-redis-cli --cluster check 127.0.0.1:6379
+redis-cli --cluster check 127.0.0.1:6379 # 127.0.0.1:6379 集群ip:port
 ```
 
 ## 2、删除集群中 `node-7` 的从节点 `node-8`
@@ -56,9 +56,13 @@ S: c0d025968fdf0070dbecf5085f287e324264309e 127.0.0.1:6383
 ```
 
 > redis-cli --cluster check 127.0.0.1:6379
+> 
 > 127.0.0.1:6379 (7460b806...) -> 0 keys | 4096 slots | 1 slaves.
+> 
 > 127.0.0.1:6385 (6888de05...) -> 1 keys | 4096 slots | 0 slaves. # 这里可以看到 slaves 已被删除
+> 
 > 127.0.0.1:6380 (d2217162...) -> 0 keys | 4096 slots | 1 slaves.
+> 
 > 127.0.0.1:6381 (5d8ede04...) -> 0 keys | 4096 slots | 1 slaves.
 
 </details>
@@ -117,7 +121,9 @@ Source node #2: done
 这里选择 `node-7` 的编码 `M: 6888de053c6c35fbdfc62d503e2464f6db970dff 127.0.0.1:6385`
 
 > Please enter all the source node IDs.
+> 
 > Type 'all' to use all the nodes as source nodes for the hash slots.
+> 
 > Type 'done' once you entered all the source nodes IDs.
 
 后面选择 `done` 继续执行
