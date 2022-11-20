@@ -116,6 +116,10 @@ nodes master `6381` 宕机 nodes slave `6383` 顶替 nodes master `6381` 变成 
 
 [Add-Node](./ADD-NODE.md)
 
+## 缩容
+
+[Del-Node](./DEL-NODE.md)
+
 # 注意事项
 
 1、按照 `Redis` 官网：[https://redis.io/topics/cluster-tutorial](https://redis.io/topics/cluster-tutorial) 的提示，为了使 `Docker` 与 `Redis Cluster` 兼容，您需要使用 `Docker` 的 `host` 网络模式。
