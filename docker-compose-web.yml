@@ -12,15 +12,6 @@ services:
     networks:
       - cluster
 
-  #  redis1:
-  #    extends: # 注意`extends`命令已被弃用,并在Compose v3.x中完全[删除]
-  #      file: docker-compose.yml
-  #      service: node1
-  #    ports:
-  #      - 6379:6379
-  #    networks:
-  #      - cluster
-
   cluster-nginx:
     image: nginx
     container_name: cluster-nginx

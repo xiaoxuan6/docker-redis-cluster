@@ -6,6 +6,9 @@ define unlink
 	rm -f $(path)/$(1)/data/*.aof $(path)/$(1)/data/*.conf $(path)/$(1)/data/*.rdb
 endef
 
+clean:
+	@$(foreach file,${files},$(call unlink,${file}))
+
 up:
 	@docker-compose up -d
 
