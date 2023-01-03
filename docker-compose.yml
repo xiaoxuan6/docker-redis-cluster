@@ -2,7 +2,6 @@ version: '3'
 
 x-redis: &common
   image: redis
-  network_mode: "host"
   restart: on-failure
   command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 
@@ -10,53 +9,66 @@ services:
   node-1:
     <<: *common
     container_name: node-1
-    ports:
-      - 6379:6379
     volumes:
       - ./node1/data:/data
       - ./node1/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.11
 
   node-2:
     <<: *common
     container_name: node-2
-    ports:
-      - 6380:6380
     volumes:
       - ./node2/data:/data
       - ./node2/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.12
 
   node-3:
     <<: *common
     container_name: node-3
-    ports:
-      - 6381:6381
     volumes:
       - ./node3/data:/data
       - ./node3/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.13
 
   node-4:
     <<: *common
     container_name: node-4
-    ports:
-      - 6382:6382
     volumes:
       - ./node4/data:/data
       - ./node4/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.14
 
   node-5:
     <<: *common
     container_name: node-5
-    ports:
-      - 6383:6383
     volumes:
       - ./node5/data:/data
       - ./node5/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.15
 
   node-6:
     <<: *common
     container_name: node-6
-    ports:
-      - 6384:6384
     volumes:
       - ./node6/data:/data
       - ./node6/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.16
+
+networks:
+  redis-cluster:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/24

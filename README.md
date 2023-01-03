@@ -9,13 +9,24 @@ docker-compose up -d
 # 2、开启集群
 
 随便找一个容器进入，这里我选择 `node-1` 进入。 在进入容器后，输入如下命令开启集群 .
+
+## a、使用固定 ip
+
+自定义 `network` 网络
+
+```bash
+redis-cli --cluster create 172.27.0.11:6379 172.27.0.12:6380 172.27.0.13:6381 172.27.0.14:6382 172.27.0.15:6383 172.27.0.16:6384 --cluster-replicas 1
+```
+
+## b、使用动态 ip 
+
+使用 `network_mode` 为 `host`
+
 > 因为使用的是 Host 网络，因此直接 localhost + port 指定就行，--cluster-replicas 设置每个 Master 复制的数量
 
 ```bash
 # 注意将 ip 换成自己服务的 ip
 # redis-cli --cluster create 127.0.0.1:6379 127.0.0.1:6380 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384 --cluster-replicas 1
-
-redis-cli --cluster create 172.17.47.59:6379 172.17.47.59:6380 172.17.47.59:6381 172.17.47.59:6382 172.17.47.59:6383 172.17.47.59:6384 --cluster-replicas 1
 ```
 
 > 这里有个坑，ip 如何使用 127.0.0.1 程序代码执行会报错，必须使用本地中的 ip（ip address | grep eth0）

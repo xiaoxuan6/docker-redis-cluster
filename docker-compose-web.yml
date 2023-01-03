@@ -10,7 +10,7 @@ services:
     volumes:
       - ./example:/var/www/html
     networks:
-      - cluster
+      - redis-cluster
 
   cluster-nginx:
     image: nginx
@@ -30,7 +30,4 @@ services:
       - node-5
       - node-6
     networks:
-      - cluster
-
-networks:
-  cluster:
+      - redis-cluster

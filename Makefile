@@ -25,6 +25,13 @@ exec:
 run-web:
 	@docker-compose -f docker-compose.yml -f docker-compose-web.yml up -d
 
+down-web:
+	@docker-compose -f docker-compose.yml -f docker-compose-web.yml down
+	@$(foreach file,${files},$(call unlink,${file}))
+
+retry-web: down-web run-web
+	# retry web container successful
+
 up-node:
 	@docker-compose -f docker-compose-add-node.yml up -d
 
