@@ -2,7 +2,6 @@ version: '3'
 
 x-redis: &common
   image: redis
-  network_mode: "host"
   restart: on-failure
   command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 
@@ -10,16 +9,18 @@ services:
   node-7:
     <<: *common
     container_name: node-7
-    ports:
-      - 6385:6385
     volumes:
       - ./node7/data:/data
       - ./node7/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.17
   node-8:
     <<: *common
     container_name: node-8
-    ports:
-      - 6386:6386
     volumes:
       - ./node8/data:/data
       - ./node8/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis-cluster:
+        ipv4_address: 172.27.0.18
